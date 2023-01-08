@@ -1,44 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks; 
 
 
 
-public class PlayerMove : BasePlayer
+public class PlayerMove : MonoBehaviour
 {
-    
-    PlayerMove()
-    {
-        playerSpeed = 8.0f;
-        playerJunpPower = 200.0f;
-        junpFlag = false;
-        junpFlagTImer = 1.0f;
-    }
+    [SerializeField]
+    private BasePlayer playerData;
 
-    public static PlayerMove MovePlayer{get; private set;} = new PlayerMove();
     // プレイヤー挙動
     public void Move(GameObject obj)
     {
         var pos = new Vector3();
 
         if(Input.GetKey(KeyCode.A) ||Input.GetKey(KeyCode.LeftArrow))
-            pos.x -= playerSpeed * Time.deltaTime;
+            pos.x -= playerData.PlayerSpeed * Time.deltaTime;
 
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            pos.x += playerSpeed * Time.deltaTime;
+            pos.x += playerData.PlayerSpeed * Time.deltaTime;
 
         obj.transform.position += pos;
     }
 
-    public void Junp(GameObject obj)
+    public async void Junp(GameObject obj)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        // フラグがたってなくてスペースを押された場合
+        if(!playerData.JunpFlag && Input.GetKeyDown(KeyCode.Space))
         {
-            junpFlag = true;
-            obj.GetComponent<Rigidbody2D>().AddForce(new Vector3(0,playerJunpPower,0));
-            
+            playerData.JunpFlag = true;
+            obj.GetComponent<Rigidbody2D>().AddForce(new Vector3(0,playerData.PlayerJunpPower,0));
+            // 1秒後にフラグを折る
+            await junpCoolTime();
         }
     }
-
-
+    
+    // 一秒後にジャンプフラグを折る
+    private async UniTask junpCoolTime()  
+    {
+        await UniTask.Delay(playerData.JunpFlagTimer);  
+        playerData.JunpFlag = false;
+        Debug.Log("Unitask完了");  
+    }
 }

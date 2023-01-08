@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     // プレイヤー取得用
     public static PlayerController player{get;private set;} = null;
+    [SerializeField]
+    private PlayerMove movePlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // プレイヤー挙動関係
-        PlayerMove.MovePlayer.Move(this.gameObject);
-        PlayerMove.MovePlayer.Junp(this.gameObject);
+        movePlayer.Move(this.gameObject);
+        movePlayer.Junp(this.gameObject);
     }
 }
