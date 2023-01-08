@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PlayerMove : BasePlayer
 {
+    
     PlayerMove()
     {
         playerSpeed = 8.0f;
@@ -37,10 +40,5 @@ public class PlayerMove : BasePlayer
         }
     }
 
-    // ジャンプのクールタイム
-    public void JunpCoolTime()
-    {
-        
-        junpFlag = false;
-    }
+
 }
