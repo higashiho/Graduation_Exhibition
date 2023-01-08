@@ -2,25 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "MyScriptable/Create PlayerData")]
-public class BasePlayer : ScriptableObject
+public class BasePlayer : MonoBehaviour
 {
-    // 挙動スピード
-    [SerializeField]
-    private float playerSpeed;
-    public float PlayerSpeed{get{return playerSpeed;}private set{playerSpeed = value;}}
+    public enum PlayerState
+    {
+        DEFAULT,
+        MOVE,
+        JUMP,
+        CHANGE
+    }
+    protected PlayerState playerStatus = PlayerState.DEFAULT;
+    public PlayerState PlayerStatus{get{return playerStatus;}set {playerStatus = value;}}
 
-    // ジャンプ力
-    [SerializeField]
-    private float playerJunpPower;
-    public float PlayerJunpPower{get{return playerJunpPower;}private set{playerJunpPower = value;}}
+    // 入力関係
+    protected void imput()
+    {
+        // 移動ボタンを押されたらステート更新
+        if(Input.GetKey(KeyCode.A) ||Input.GetKey(KeyCode.LeftArrow) ||
+            Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            playerStatus = PlayerState.MOVE;
 
-    // ジャンプフラグ
-    private bool junpFlag;
-    public bool JunpFlag{get {return junpFlag;}set {junpFlag = value;}} 
-    // ジャンプフラグを折るタイマー
-    [SerializeField]
-    private int junpFlagTimer;       // nミリ秒;
-    public int JunpFlagTimer{get{return junpFlagTimer;}private set{junpFlagTimer = value;}}
-
+        // ジャンプボタンを押されたらステート更新
+        if(Input.GetKeyDown(KeyCode.Space))
+            playerStatus = PlayerState.JUMP;
+        
+    }
 }
