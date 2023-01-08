@@ -8,6 +8,7 @@ public class ColTrump : MonoBehaviour
     [SerializeField]
     private BaseTrump trump;
 
+    // プレイヤーとエネミー入れ替え関数
     private async void changePos(Collision2D col)
     {
         // プレイヤーの座標とエネミーの座標を変更
@@ -32,7 +33,7 @@ public class ColTrump : MonoBehaviour
         PlayerController.player.PlayerStatus = BasePlayer.PlayerState.CHANGE;
 
         // 座標を更新
-        while(PlayerController.player.transform.position.x != tmpEnemyPos.x)
+        while(PlayerController.player.transform.position.x != tmpEnemyPos.x || col.transform.position != tmpPlayerPos)
         {
             // 座標を更新
             PlayerController.player.transform.position = Vector3.MoveTowards(PlayerController.player.transform.position, tmpEnemyPos, Const.CHANGE_SPEED * Time.deltaTime);
@@ -49,7 +50,8 @@ public class ColTrump : MonoBehaviour
         tmpEnemyCol.enabled = true;
         tmpEnemyRb.gravityScale = Const.START_GRACITY_SCALE;
     }
-    
+
+    // 当たり判定
     private void OnCollisionEnter2D(Collision2D col) 
     {
         if(col.gameObject.tag == "Wall")
@@ -62,12 +64,13 @@ public class ColTrump : MonoBehaviour
 
         if(col.gameObject.tag == "Enemy")
         {
+            // 位置変更
+            changePos(col);
+
             // 非同期をキャンセルしてプールに格納
             trump.cts.Cancel();
             trump.objectPoolCallBack?.Invoke(trump);
 
-            // 位置変更
-            changePos(col);
         }
     }
 }
