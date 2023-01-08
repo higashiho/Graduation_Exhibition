@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4212783008351302224}
   - component: {fileID: -6117547248525239475}
   - component: {fileID: 7393801086609435946}
+  - component: {fileID: -8999699822060427182}
   m_Layer: 7
   m_Name: Trump
   m_TagString: Untagged
@@ -147,3 +148,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-8999699822060427182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429535107164717854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273188da305fc6549a93ac0d7cae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trump: {fileID: -4212783008351302224}

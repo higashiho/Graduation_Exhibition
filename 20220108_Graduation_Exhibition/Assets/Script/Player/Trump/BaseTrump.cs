@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Threading;
 
 public class BaseTrump : MonoBehaviour
 {
@@ -20,4 +21,7 @@ public class BaseTrump : MonoBehaviour
 
     // 回収イベント
     public UnityAction<BaseTrump> objectPoolCallBack;
+
+    
+    public CancellationTokenSource cts{get;private set;} = new CancellationTokenSource();  
 }

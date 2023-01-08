@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks; 
+using System.Threading;
 
 public class TrumoMove
 {
@@ -13,10 +14,19 @@ public class TrumoMove
         trump.GetComponent<Rigidbody2D>().velocity = trump.ShotForward * trump.TrumpsData.TrumpSpeed;
     }
 
-    public async UniTask Callback(BaseTrump tmpObj, TrumpData trumpData)
+    public async UniTask Callback(BaseTrump tmpObj, TrumpData trumpData, CancellationToken token)
     {
         await UniTask.Delay(trumpData.DeleteTime);
 
+        // キャンセルが要求されている場合
+        if ( token.IsCancellationRequested )
+        {
+            Debug.Log ( "Canceled." );
+            return;
+        }
+        
+        // されていない場合
+        Debug.Log("pool格納");
         // オブジェクトプールに回収
         tmpObj.objectPoolCallBack?.Invoke(tmpObj);
     }

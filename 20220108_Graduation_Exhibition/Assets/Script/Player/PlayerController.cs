@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : BasePlayer
 {
     // プレイヤー取得用
     public static PlayerController player{get;private set;} = null;
@@ -21,10 +21,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // プレイヤー挙動関係
-        PlayerMove.MovePlayer.Move(this.gameObject, playerData);
-        PlayerMove.MovePlayer.Junp(this.gameObject, playerData);
+        switch(playerStatus)
+        {
+            case PlayerState.MOVE:
+                PlayerMove.MovePlayer.Move(this, playerData);
+                break;
+            case PlayerState.JUMP:
+                PlayerMove.MovePlayer.Junp(this, playerData);
+                break;
+            case PlayerState.DEFAULT:
+                imput();
+                break;
+            default:
+                break;
+        }
 
         // トランプ生成挙動
         CreateTrump.TrumpCreate.TrumpMove(this.gameObject, trump);
     }
+
 }
