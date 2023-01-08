@@ -14,9 +14,10 @@ public class TrumoMove
         trump.GetComponent<Rigidbody2D>().velocity = trump.ShotForward * trump.TrumpsData.TrumpSpeed;
     }
 
+    // 指定秒後にキャンセルが要求されていなければプールに格納
     public async UniTask Callback(BaseTrump tmpObj, TrumpData trumpData, CancellationToken token)
     {
-        await UniTask.Delay(trumpData.DeleteTime);
+        await UniTask.Delay(trumpData.DeleteTime * Const.CHANGE_SECOND);
 
         // キャンセルが要求されている場合
         if ( token.IsCancellationRequested )

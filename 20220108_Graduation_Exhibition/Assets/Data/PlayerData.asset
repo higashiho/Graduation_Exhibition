@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 8
   playerJunpPower: 230
-  junpFlagTimer: 1000
+  junpFlagTimer: 1

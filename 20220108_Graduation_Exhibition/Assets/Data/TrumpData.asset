@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6caaf32309bbcdd4ebe000fa11c99803, type: 3}
   m_Name: TrumpData
   m_EditorClassIdentifier: 
-  trumpSpeed: 0
+  trumpSpeed: 10
+  deleteTime: 2
+  shotTime: 2

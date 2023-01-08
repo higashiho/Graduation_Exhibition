@@ -47,7 +47,7 @@ public class PlayerMove
     // 一秒後にジャンプフラグを折る
     private async UniTask junpCoolTime(PlayerData playerData)  
     {
-        await UniTask.Delay(playerData.JunpFlagTimer);  
+        await UniTask.Delay(playerData.JunpFlagTimer * Const.CHANGE_SECOND);  
         playerData.JunpFlag = false;
         Debug.Log("Unitask完了");  
     }

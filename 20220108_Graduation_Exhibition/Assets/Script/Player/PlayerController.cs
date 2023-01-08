@@ -36,8 +36,10 @@ public class PlayerController : BasePlayer
                 break;
         }
 
-        // トランプ生成挙動
-        CreateTrump.TrumpCreate.TrumpMove(this.gameObject, trump);
+        // 移動中はトランプ生成できないように
+        if(playerStatus != PlayerState.MOVE)
+            // トランプ生成挙動
+            CreateTrump.TrumpCreate.TrumpMove(this.gameObject, trump);
     }
 
 }

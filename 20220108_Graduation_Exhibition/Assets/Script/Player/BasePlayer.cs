@@ -9,6 +9,7 @@ public class BasePlayer : MonoBehaviour
         DEFAULT,
         MOVE,
         JUMP,
+        CHANGE
     }
     protected PlayerState playerStatus = PlayerState.DEFAULT;
     public PlayerState PlayerStatus{get{return playerStatus;}set {playerStatus = value;}}
