@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     // 挙動スピード
-    [SerializeField]
+    [SerializeField, Header("移動スピード")]
     private float playerSpeed;
     public float PlayerSpeed{get{return playerSpeed;}private set{playerSpeed = value;}}
 
     // ジャンプ力
-    [SerializeField]
+    [SerializeField, Header("ジャンプ力")]
     private float playerJunpPower;
     public float PlayerJunpPower{get{return playerJunpPower;}private set{playerJunpPower = value;}}
 
@@ -19,8 +19,8 @@ public class PlayerData : ScriptableObject
     private bool junpFlag;
     public bool JunpFlag{get {return junpFlag;}set {junpFlag = value;}} 
     // ジャンプフラグを折るタイマー
-    [SerializeField]
-    private int junpFlagTimer;       // nミリ秒;
+    [SerializeField, Header("ジャンプ間隔")]
+    private int junpFlagTimer;
     public int JunpFlagTimer{get{return junpFlagTimer;}private set{junpFlagTimer = value;}}
 
 }

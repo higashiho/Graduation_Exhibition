@@ -11,16 +11,17 @@ public class ColTrump : MonoBehaviour
     // プレイヤーとエネミー入れ替え関数
     private async void changePos(Collision2D col)
     {
+        var tmpEnemy = col.gameObject.GetComponent<BaseEnemy>();
         // プレイヤーの座標とエネミーの座標を変更
         // プレイヤーの座標を一旦別変数に格納
         var tmpPlayerPos = PlayerController.player.transform.position;
-        var tmpEnemyPos = col.transform.position;
+        var tmpEnemyPos = tmpEnemy.transform.position;
         
         // 当たり判定
         var tmpPlayerCol = PlayerController.player.GetComponent<BoxCollider2D>();
-        var tmpEnemyCol = col.gameObject.GetComponent<BoxCollider2D>();
+        var tmpEnemyCol = tmpEnemy.GetComponent<BoxCollider2D>();
         var tmpPlayerRb = PlayerController.player.GetComponent<Rigidbody2D>();
-        var tmpEnemyRb = col.gameObject.GetComponent<Rigidbody2D>();
+        var tmpEnemyRb = tmpEnemy.GetComponent<Rigidbody2D>();
 
         
         // 座標を更新している最中は当たり判定と重力を削除
@@ -31,18 +32,20 @@ public class ColTrump : MonoBehaviour
 
         // 処理中はステートを更新
         PlayerController.player.PlayerStatus = BasePlayer.PlayerState.CHANGE;
+        tmpEnemy.EnemysStatus = BaseEnemy.EnemyState.CHANGE;
 
         // 座標を更新
-        while(PlayerController.player.transform.position.x != tmpEnemyPos.x || col.transform.position != tmpPlayerPos)
+        while(PlayerController.player.transform.position.x != tmpEnemyPos.x && tmpEnemy.transform.position != tmpPlayerPos)
         {
             // 座標を更新
             PlayerController.player.transform.position = Vector3.MoveTowards(PlayerController.player.transform.position, tmpEnemyPos, Const.CHANGE_SPEED * Time.deltaTime);
-            col.transform.position = Vector3.MoveTowards(col.transform.position, tmpPlayerPos, Const.CHANGE_SPEED * Time.deltaTime);
+            tmpEnemy.transform.position = Vector3.MoveTowards(tmpEnemy.transform.position, tmpPlayerPos, Const.CHANGE_SPEED * Time.deltaTime);
             await UniTask.Delay(Const.CHANGE_DELAY_SPEED);
         }
 
         // 処理が終わったらステートを初期化
         PlayerController.player.PlayerStatus = BasePlayer.PlayerState.DEFAULT;
+        tmpEnemy.EnemysStatus = BaseEnemy.EnemyState.MOVE;
         
         // 処理が終わるころに当たり判定と重力を直す
         tmpPlayerCol.enabled = true;
