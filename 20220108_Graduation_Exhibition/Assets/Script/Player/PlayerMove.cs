@@ -11,7 +11,7 @@ public class PlayerMove
     public static PlayerMove MovePlayer{get;private set;} = new PlayerMove();
     // プレイヤー挙動
     // 第一引数：動かすオブジェクト　第二引数：オブジェクトのデータ
-    public void Move(GameObject obj, BasePlayer playerData)
+    public void Move(GameObject obj, PlayerData playerData)
     {
         var pos = new Vector3();
 
@@ -26,7 +26,7 @@ public class PlayerMove
     
     // ジャンプ挙動
     // 第一引数：動かすオブジェクト　第二引数：オブジェクトのデータ
-    public async void Junp(GameObject obj, BasePlayer playerData)
+    public async void Junp(GameObject obj, PlayerData playerData)
     {
         // フラグがたってなくてスペースを押された場合
         if(!playerData.JunpFlag && Input.GetKeyDown(KeyCode.Space))
@@ -39,7 +39,7 @@ public class PlayerMove
     }
     
     // 一秒後にジャンプフラグを折る
-    private async UniTask junpCoolTime(BasePlayer playerData)  
+    private async UniTask junpCoolTime(PlayerData playerData)  
     {
         await UniTask.Delay(playerData.JunpFlagTimer);  
         playerData.JunpFlag = false;

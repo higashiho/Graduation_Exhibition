@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour
     // プレイヤー取得用
     public static PlayerController player{get;private set;} = null;
     [SerializeField]
-    private BasePlayer playerData;
+    private PlayerData playerData;
+
+    [SerializeField]    // 生成するトランプ
+    private BaseTrump trump;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +23,8 @@ public class PlayerController : MonoBehaviour
         // プレイヤー挙動関係
         PlayerMove.MovePlayer.Move(this.gameObject, playerData);
         PlayerMove.MovePlayer.Junp(this.gameObject, playerData);
+
+        // トランプ生成挙動
+        CreateTrump.TrumpCreate.TrumpMove(this.gameObject, trump);
     }
 }
