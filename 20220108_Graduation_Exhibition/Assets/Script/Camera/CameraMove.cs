@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : BaseCamera
 {
-    public static CameraMove MoveCamera = new CameraMove();
+    public static CameraMove MoveCamera{get;private set;} = new CameraMove();
 
     // カメラ挙動
     public void Move(GameObject obj)
