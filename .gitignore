@@ -3,7 +3,7 @@
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
 /20220108_Graduation_Exhibition/[Ll]ibrary/
-/20220108_Graduation_Exhibition//[Tt]emp/
+/20220108_Graduation_Exhibition/[Tt]emp/
 /20220108_Graduation_Exhibition/[Oo]bj/
 /20220108_Graduation_Exhibition/[Bb]uild/
 /20220108_Graduation_Exhibition/[Bb]uilds/
