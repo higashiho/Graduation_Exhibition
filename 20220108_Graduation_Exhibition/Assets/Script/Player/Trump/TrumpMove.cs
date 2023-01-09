@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks; 
 using System.Threading;
+using UnityEngine.SceneManagement;
 
 public class TrumpMove
 {
@@ -30,5 +31,14 @@ public class TrumpMove
         Debug.Log("pool格納");
         // オブジェクトプールに回収
         tmpObj.objectPoolCallBack?.Invoke(tmpObj);
+    }
+
+    // クリア条件判断用
+    public void GameClear(BaseTrump tmpTrump)
+    {
+        if(tmpTrump.transform.position.y >= Const.GAME_CLEAR_POS_Y)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
     }
 }

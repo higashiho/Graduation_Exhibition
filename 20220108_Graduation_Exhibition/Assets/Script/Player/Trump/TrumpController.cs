@@ -15,5 +15,7 @@ public class TrumpController : BaseTrump
     // Update is called once per frame
     void Update()
     {
+        // ゲームクリア確認用
+        TrumpMove.MoveTrump.GameClear(this);
     }
 }
