@@ -27,5 +27,4 @@ public class Const
 
     // Task用定数
     public const int CHANGE_SECOND = 1000;              // nミリ秒を秒に変換用
-    public const float CHARACTER_CHANGE_TIME = 0.8f;    // 座標変更時の時間調整
 }

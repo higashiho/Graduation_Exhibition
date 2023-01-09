@@ -7,6 +7,7 @@ public class BasePlayer : MonoBehaviour
     [Header("playerのデータ")]
     [SerializeField]    
     protected PlayerData playerData;
+    public PlayerData DataPlayer{get {return playerData;}private set{playerData = value;}}
     public enum PlayerState
     {
         DEFAULT,
@@ -16,6 +17,12 @@ public class BasePlayer : MonoBehaviour
     }
     protected PlayerState playerStatus = PlayerState.DEFAULT;
     public PlayerState PlayerStatus{get{return playerStatus;}set {playerStatus = value;}}
+
+    
+    // トランプを打てるかフラグ
+    [SerializeField]
+    protected bool shotFlag = true;
+    public bool ShotFlag{get{return shotFlag;}set{shotFlag = value;}}
 
     // 入力関係
     protected void imput()

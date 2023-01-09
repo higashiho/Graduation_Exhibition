@@ -7,14 +7,12 @@ public class CreateTrump
 {
     public static CreateTrump TrumpCreate{get;private set;} = new CreateTrump();
 
-    // トランプを打てるかフラグ
-    private bool shotFlag = true;
     // 弾の生成と移動向きを代入する関数
     public async void Move(BasePlayer tmpObj, BaseTrump tmpTrump)
     {
-        if(Input.GetMouseButtonDown(0) && shotFlag)
+        if(Input.GetMouseButtonDown(0) && PlayerController.Player.ShotFlag)
         {
-            shotFlag = false;
+            PlayerController.Player.ShotFlag = false;
             // 生成
             BaseTrump clone = FactoryTrump.objectPool.Launch(tmpObj.transform.position, FactoryTrump.objectPool.BulletList, tmpTrump);
 
@@ -36,6 +34,7 @@ public class CreateTrump
     {
         await UniTask.Delay(trumpData.ShotTime * Const.CHANGE_SECOND);
 
-        shotFlag = true;
+        PlayerController.Player.ShotFlag = true;
+        TrumpUI.Trumps.PlayFlag = true;
     }
 }

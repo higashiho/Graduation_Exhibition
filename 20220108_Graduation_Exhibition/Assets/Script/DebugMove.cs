@@ -27,7 +27,7 @@ public class DebugMove : MonoBehaviour
         {
             var tmpMouse = Input.mousePosition;
             var tmpTarget = Camera.main.ScreenToWorldPoint(new Vector3(tmpMouse.x, tmpMouse.y, Const.MOUSE_POS_X));
-            PlayerController.player.transform.position = tmpTarget;
+            PlayerController.Player.transform.position = tmpTarget;
         }
     }
 }

@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerController : BasePlayer
 {
     // プレイヤー取得用
-    public static PlayerController player{get;private set;} = null;
+    public static PlayerController Player{get;private set;} = null;
 
     [SerializeField]    // 生成するトランプ
     private BaseTrump trump;
     // Start is called before the first frame update
     void Start()
     {
-        player = this;
+        Player = this;
     }
 
     // Update is called once per frame

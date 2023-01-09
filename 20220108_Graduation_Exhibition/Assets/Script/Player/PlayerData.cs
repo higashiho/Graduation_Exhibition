@@ -18,9 +18,15 @@ public class PlayerData : ScriptableObject
     // ジャンプフラグ
     private bool junpFlag;
     public bool JunpFlag{get {return junpFlag;}set {junpFlag = value;}} 
+
+
     // ジャンプフラグを折るタイマー
     [SerializeField, Header("ジャンプ間隔")]
     private int junpFlagTimer;
     public int JunpFlagTimer{get{return junpFlagTimer;}private set{junpFlagTimer = value;}}
+    
 
+    [SerializeField,Header("入れ替わる間隔時間")]
+    private float changeTimer;
+    public float ChangeTimer{get{return changeTimer;}private set{changeTimer = value;}}
 }
