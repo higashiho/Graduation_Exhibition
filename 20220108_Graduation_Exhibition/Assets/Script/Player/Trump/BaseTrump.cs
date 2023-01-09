@@ -6,7 +6,8 @@ using System.Threading;
 
 public class BaseTrump : MonoBehaviour
 {
-    [SerializeField]    // データ
+    [Header("トランプのデータ")]
+    [SerializeField]    
     protected TrumpData trumpData;
     public TrumpData TrumpsData{get{return trumpData;}private set{trumpData = value;}}
 
@@ -22,6 +23,6 @@ public class BaseTrump : MonoBehaviour
     // 回収イベント
     public UnityAction<BaseTrump> objectPoolCallBack;
 
-    
+    // タスク管理用
     public CancellationTokenSource cts{get;private set;} = new CancellationTokenSource();  
 }

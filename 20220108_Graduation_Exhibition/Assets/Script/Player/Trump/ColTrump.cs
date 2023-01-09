@@ -8,8 +8,11 @@ public class ColTrump : MonoBehaviour
     [SerializeField]
     private BaseTrump trump;
 
+    // ループフラグ
+    private bool loopFlag = false;
+
     // プレイヤーとエネミー入れ替え関数
-    private async void changePos(Collision2D col)
+    private async void changePos(Collision2D col )
     {
         var tmpEnemy = col.gameObject.GetComponent<BaseEnemy>();
         // プレイヤーの座標とエネミーの座標を変更
@@ -34,9 +37,15 @@ public class ColTrump : MonoBehaviour
         PlayerController.player.PlayerStatus = BasePlayer.PlayerState.CHANGE;
         tmpEnemy.EnemysStatus = BaseEnemy.EnemyState.CHANGE;
 
-        // 座標を更新
-        while(PlayerController.player.transform.position.x != tmpEnemyPos.x && tmpEnemy.transform.position != tmpPlayerPos)
+        // 座標を更新 指定秒後に処理終了
+        while(true)
         {
+            // 指定秒後に抜ける
+            if(loopFlag)
+            {
+                loopFlag = false;
+                break;
+            }
             // 座標を更新
             PlayerController.player.transform.position = Vector3.MoveTowards(PlayerController.player.transform.position, tmpEnemyPos, Const.CHANGE_SPEED * Time.deltaTime);
             tmpEnemy.transform.position = Vector3.MoveTowards(tmpEnemy.transform.position, tmpPlayerPos, Const.CHANGE_SPEED * Time.deltaTime);
@@ -55,7 +64,7 @@ public class ColTrump : MonoBehaviour
     }
 
     // 当たり判定
-    private void OnCollisionEnter2D(Collision2D col) 
+    private async void OnCollisionEnter2D(Collision2D col) 
     {
         if(col.gameObject.tag == "Wall")
         {
@@ -74,6 +83,16 @@ public class ColTrump : MonoBehaviour
             trump.cts.Cancel();
             trump.objectPoolCallBack?.Invoke(trump);
 
+            // 一定秒後にtrueに変換
+            loopFlag = await endLoop();
         }
+    }
+
+    // 指定秒後にtrueを返すタスク
+    private async UniTask<bool> endLoop()
+    {
+        // 0.8秒後にtrueを返す
+        await UniTask.Delay((int)((float)Const.CHANGE_SECOND * Const.CHARACTER_CHANGE_TIME));
+        return true;
     }
 }

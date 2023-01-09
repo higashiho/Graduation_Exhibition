@@ -6,8 +6,6 @@ public class PlayerController : BasePlayer
 {
     // プレイヤー取得用
     public static PlayerController player{get;private set;} = null;
-    [SerializeField]
-    private PlayerData playerData;
 
     [SerializeField]    // 生成するトランプ
     private BaseTrump trump;
@@ -45,7 +43,7 @@ public class PlayerController : BasePlayer
         // 移動中と座標変更時はトランプ生成できないように設定
         if(playerStatus != PlayerState.MOVE || playerStatus != PlayerState.CHANGE)
             // トランプ生成挙動
-            CreateTrump.TrumpCreate.TrumpMove(this.gameObject, trump);
+            CreateTrump.TrumpCreate.Move(this, trump);
     }
 
 }
