@@ -13,7 +13,7 @@ public class ColPlayer : MonoBehaviour
     {
         if(col.gameObject.tag == "Bullet")
         {
-            SceneManager.LoadScene("EndScene");
+            SceneManager.LoadScene("ResultScene");
         }
     }
     private void OnTriggerEnter2D(Collider2D other) 

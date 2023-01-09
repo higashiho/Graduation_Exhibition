@@ -38,7 +38,7 @@ public class TrumpMove
     {
         if(tmpTrump.transform.position.y >= Const.GAME_CLEAR_POS_Y)
         {
-            SceneManager.LoadScene("EndScene");
+            SceneManager.LoadScene("ResultScene");
         }
     }
 }
