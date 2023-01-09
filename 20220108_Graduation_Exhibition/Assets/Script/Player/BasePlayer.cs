@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BasePlayer : MonoBehaviour
 {
+    [Header("playerのデータ")]
+    [SerializeField]    
+    protected PlayerData playerData;
     public enum PlayerState
     {
         DEFAULT,
