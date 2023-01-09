@@ -17,27 +17,48 @@ public class ColTrump : MonoBehaviour
         var tmpEnemy = col.gameObject.GetComponent<BaseEnemy>();
         // プレイヤーの座標とエネミーの座標を変更
         // プレイヤーの座標を一旦別変数に格納
-        var tmpPlayerPos = PlayerController.player.transform.position;
+        var tmpPlayerPos = PlayerController.Player.transform.position;
         var tmpEnemyPos = tmpEnemy.transform.position;
         
         // 当たり判定
-        var tmpPlayerCol = PlayerController.player.GetComponent<BoxCollider2D>();
-        var tmpEnemyCol = tmpEnemy.GetComponent<BoxCollider2D>();
-        var tmpPlayerRb = PlayerController.player.GetComponent<Rigidbody2D>();
+        var tmpPlayerCol = PlayerController.Player.GetComponent<BoxCollider2D>();
+        // 親の当たり判定と子の当たり判定を取得
+        var tmpEnemysCol = tmpEnemy.GetComponent<BoxCollider2D>();                      // 親の当たり判定
+        var tmpEnemyCol = tmpEnemy.transform.GetChild(0).GetComponent<BoxCollider2D>(); // 子の当たり判定
+
+        // 重力処理を取得
+        var tmpPlayerRb = PlayerController.Player.GetComponent<Rigidbody2D>();
         var tmpEnemyRb = tmpEnemy.GetComponent<Rigidbody2D>();
 
         
         // 座標を更新している最中は当たり判定と重力を削除
         tmpPlayerCol.enabled = false;
         tmpPlayerRb.gravityScale = 0;
+        tmpEnemysCol.enabled = false;
         tmpEnemyCol.enabled = false;
         tmpEnemyRb.gravityScale = 0;
 
         // 処理中はステートを更新
-        PlayerController.player.PlayerStatus = BasePlayer.PlayerState.CHANGE;
-        tmpEnemy.EnemysStatus = BaseEnemy.EnemyState.CHANGE;
+        changeState(BasePlayer.PlayerState.CHANGE,BaseEnemy.EnemyState.CHANGE, tmpEnemy);
+
 
         // 座標を更新 指定秒後に処理終了
+        await changeMove(tmpEnemy,tmpEnemyPos,tmpPlayerPos);
+
+        // 処理が終わったらステートを初期化
+        changeState(BasePlayer.PlayerState.DEFAULT,BaseEnemy.EnemyState.MOVE, tmpEnemy);
+        
+        // 処理が終わるころに当たり判定と重力を直す
+        tmpPlayerCol.enabled = true;
+        tmpPlayerRb.gravityScale = Const.START_GRACITY_SCALE;
+        tmpEnemysCol.enabled = true;
+        tmpEnemyCol.enabled = true;
+        tmpEnemyRb.gravityScale = Const.START_GRACITY_SCALE;
+    }
+
+    // 移動処理
+    private async UniTask changeMove(BaseEnemy tmpEnemy,Vector3 tmpEnemyPos, Vector3 tmpPlayerPos)
+    {
         while(true)
         {
             // 指定秒後に抜ける
@@ -47,26 +68,22 @@ public class ColTrump : MonoBehaviour
                 break;
             }
             // 座標を更新
-            PlayerController.player.transform.position = Vector3.MoveTowards(PlayerController.player.transform.position, tmpEnemyPos, Const.CHANGE_SPEED * Time.deltaTime);
+            PlayerController.Player.transform.position = Vector3.MoveTowards(PlayerController.Player.transform.position, tmpEnemyPos, Const.CHANGE_SPEED * Time.deltaTime);
             tmpEnemy.transform.position = Vector3.MoveTowards(tmpEnemy.transform.position, tmpPlayerPos, Const.CHANGE_SPEED * Time.deltaTime);
             await UniTask.Delay(Const.CHANGE_DELAY_SPEED);
         }
+    }
 
-        // 処理が終わったらステートを初期化
-        PlayerController.player.PlayerStatus = BasePlayer.PlayerState.DEFAULT;
-        tmpEnemy.EnemysStatus = BaseEnemy.EnemyState.MOVE;
-        
-        // 処理が終わるころに当たり判定と重力を直す
-        tmpPlayerCol.enabled = true;
-        tmpPlayerRb.gravityScale = Const.START_GRACITY_SCALE;
-        tmpEnemyCol.enabled = true;
-        tmpEnemyRb.gravityScale = Const.START_GRACITY_SCALE;
+    protected void changeState(BasePlayer.PlayerState tmpPlayerState , BaseEnemy.EnemyState tmpEnemyState, BaseEnemy tmpEnemy)
+    {
+        PlayerController.Player.PlayerStatus = tmpPlayerState;
+        tmpEnemy.EnemysStatus = tmpEnemyState;
     }
 
     // 当たり判定
     private async void OnCollisionEnter2D(Collision2D col) 
     {
-        if(col.gameObject.tag == "Wall")
+        if(col.gameObject.tag == "Wall" || col.gameObject.tag == "Bullet")
         {
             // 非同期をキャンセルしてプールに格納
             trump.cts.Cancel();
@@ -92,7 +109,7 @@ public class ColTrump : MonoBehaviour
     private async UniTask<bool> endLoop()
     {
         // 0.8秒後にtrueを返す
-        await UniTask.Delay((int)((float)Const.CHANGE_SECOND * Const.CHARACTER_CHANGE_TIME));
+        await UniTask.Delay((int)((float)Const.CHANGE_SECOND * PlayerController.Player.DataPlayer.ChangeTimer));
         return true;
     }
 }

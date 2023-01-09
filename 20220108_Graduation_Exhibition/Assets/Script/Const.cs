@@ -13,6 +13,7 @@ public class Const
     // player用定数
     public const float CHANGE_SPEED = 10.0f;            // 敵との入れ替え時スピード
     public const int CHANGE_DELAY_SPEED = 1;            // 入れ替え時の遅延時間
+    public const float GAME_CLEAR_POS_Y = 32.0f;            // ゲームクリア座標
     public const int START_GRACITY_SCALE = 1;           // 初期重力量
     
 
@@ -26,5 +27,4 @@ public class Const
 
     // Task用定数
     public const int CHANGE_SECOND = 1000;              // nミリ秒を秒に変換用
-    public const float CHARACTER_CHANGE_TIME = 0.8f;    // 座標変更時の時間調整
 }
