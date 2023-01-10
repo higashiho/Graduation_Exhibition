@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Playables;
 using TMPro;
 
 public class BaseUI : MonoBehaviour
 {
     [Header("Title")]
     [Header("InGame")]
-    [SerializeField, Header("トランプUIのタイムライン")]
-    protected PlayableDirector trumpAnimator;
-    public PlayableDirector TrumpAbunator{get{return trumpAnimator;}private set{trumpAnimator = value;}}
+    [SerializeField, Header("トランプUI")]
+    protected Slider trumpSlider;
+    public Slider TrumpSlider{get{return trumpSlider;}private set{trumpSlider = value;}}
 
     [SerializeField, Header("アイテムのUI")]
     protected Text itemsUI;

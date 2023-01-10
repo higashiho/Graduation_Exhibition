@@ -3969,7 +3969,7 @@ GameObject:
   - component: {fileID: 916335453}
   m_Layer: 5
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3986,7 +3986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c50a6a0d1b9bd745bfe67a14fa73663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trumpAnimator: {fileID: 1644331067}
+  trumpSlider: {fileID: 1644331065}
   itemsUI: {fileID: 433590600}
   items:
   - {fileID: 1083780483}
@@ -4264,6 +4264,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cd1b71acb468f341be3d1eed4efc6ec, type: 3}
+--- !u!1 &1097101468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1097101470}
+  - component: {fileID: 1097101469}
+  m_Layer: 0
+  m_Name: Objects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1097101469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097101468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0882561337a7c24dac96b5cbb63e238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1097101470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097101468}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.178625, y: -0.12356764, z: 0.4211627}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1099705501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4687,8 +4731,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1644331066}
   - component: {fileID: 1644331065}
-  - component: {fileID: 1644331064}
-  - component: {fileID: 1644331067}
   m_Layer: 5
   m_Name: TrumpSlider
   m_TagString: Untagged
@@ -4696,26 +4738,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1644331064
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644331063}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1644331065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4790,25 +4812,6 @@ RectTransform:
   m_AnchoredPosition: {x: -859, y: 388}
   m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!320 &1644331067
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644331063}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 95bb40c613c64ce46a8ca17497bcc220, type: 2}
-  m_InitialState: 0
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -3763930837658102780, guid: 95bb40c613c64ce46a8ca17497bcc220, type: 2}
-    value: {fileID: 1644331064}
-  m_ExposedReferences:
-    m_References: []
 --- !u!1001 &1703306923
 PrefabInstance:
   m_ObjectHideFlags: 0

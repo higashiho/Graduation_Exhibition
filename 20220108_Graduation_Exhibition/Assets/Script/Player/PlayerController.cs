@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PlayerController : BasePlayer
 {
-    // プレイヤー取得用
-    public static PlayerController Player{get;private set;} = null;
 
     [SerializeField]    // 生成するトランプ
     private BaseTrump trump;
     // Start is called before the first frame update
     void Start()
     {
-        Player = this;
     }
 
     // Update is called once per frame
@@ -43,7 +40,7 @@ public class PlayerController : BasePlayer
         // 移動中と座標変更時はトランプ生成できないように設定
         if(playerStatus != PlayerState.MOVE || playerStatus != PlayerState.CHANGE)
             // トランプ生成挙動
-            CreateTrump.TrumpCreate.Move(this, trump);
+            CreateTrump.TrumpCreate.Move(this, trump, InGameController.UI);
     }
 
 }

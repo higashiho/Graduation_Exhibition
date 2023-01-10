@@ -8,11 +8,15 @@ public class CreateTrump
     public static CreateTrump TrumpCreate{get;private set;} = new CreateTrump();
 
     // 弾の生成と移動向きを代入する関数
-    public async void Move(BasePlayer tmpObj, BaseTrump tmpTrump)
+    public async void Move(BasePlayer tmpObj, BaseTrump tmpTrump, BaseUI tmpUI)
     {
-        if(Input.GetMouseButtonDown(0) && PlayerController.Player.ShotFlag)
+        if(Input.GetMouseButtonDown(0) && InGameController.Player.ShotFlag)
         {
-            PlayerController.Player.ShotFlag = false;
+            InGameController.Player.ShotFlag = false;
+            
+            // トランプのスライダーを初期化
+            tmpUI.TrumpSlider.value = tmpUI.TrumpSlider.maxValue;
+
             // 生成
             BaseTrump clone = FactoryTrump.objectPool.Launch(tmpObj.transform.position, FactoryTrump.objectPool.BulletList, tmpTrump);
 
@@ -34,7 +38,7 @@ public class CreateTrump
     {
         await UniTask.Delay(trumpData.ShotTime * Const.CHANGE_SECOND);
 
-        PlayerController.Player.ShotFlag = true;
+        InGameController.Player.ShotFlag = true;
         TrumpUI.Trumps.PlayFlag = true;
     }
 }

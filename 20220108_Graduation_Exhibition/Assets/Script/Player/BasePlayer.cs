@@ -15,6 +15,7 @@ public class BasePlayer : MonoBehaviour
         JUMP,
         CHANGE
     }
+    [SerializeField]
     protected PlayerState playerStatus = PlayerState.DEFAULT;
     public PlayerState PlayerStatus{get{return playerStatus;}set {playerStatus = value;}}
 

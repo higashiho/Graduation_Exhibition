@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ColVision : MonoBehaviour
 {
-    
+    [SerializeField]    // 親オブジェクト
+    private BaseEnemy enemy;
     // 当たり判定
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,7 +18,6 @@ public class ColVision : MonoBehaviour
     // 親オブジェのエネミーのステートを攻撃に変更
     private void Detection()
     {
-        var tmpEnemy = this.transform.parent.GetComponent<EnemyController>();
-        tmpEnemy.EnemysStatus = BaseEnemy.EnemyState.ATTACK;
+        enemy.EnemysStatus = BaseEnemy.EnemyState.ATTACK;
     }
 }

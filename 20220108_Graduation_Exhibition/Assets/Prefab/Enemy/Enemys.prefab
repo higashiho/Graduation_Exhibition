@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1114550148}
   - component: {fileID: 2062789669523054212}
   m_Layer: 0
-  m_Name: LeftVision
+  m_Name: RightVision
   m_TagString: Vision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114550145}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.75, y: 0, z: 0}
+  m_LocalPosition: {x: 1.75, y: 0.3, z: 0}
   m_LocalScale: {x: 1.0000002, y: 4.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6901b5128a82e4d43bc2faa70f813d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 499586450}
 --- !u!114 &2062789669523054212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +263,7 @@ GameObject:
   - component: {fileID: 1734682552}
   - component: {fileID: 324535711655697518}
   m_Layer: 0
-  m_Name: RightVision
+  m_Name: LeftVision
   m_TagString: Vision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +277,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734682551}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.75, y: 0, z: 0}
+  m_LocalPosition: {x: -1.75, y: 0.3, z: 0}
   m_LocalScale: {x: 1.0000002, y: -4.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -398,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6901b5128a82e4d43bc2faa70f813d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 499586450}
 --- !u!114 &324535711655697518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,6 +774,6 @@ MonoBehaviour:
   enemyStatus: 0
   enemyMoveFlag: 0
   enemyData: {fileID: 11400000, guid: 2a1f466230ae468448f693aa0be4a029, type: 2}
-  leftVision: {fileID: 1114550145}
-  rightVision: {fileID: 1734682551}
+  leftVision: {fileID: 1734682551}
+  rightVision: {fileID: 1114550145}
   bullet: {fileID: 4388299103519208363, guid: 9e41a42b0d46e044a96ab47aa5359bc4, type: 3}

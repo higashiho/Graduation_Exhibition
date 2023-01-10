@@ -16,6 +16,7 @@ public class PlayerData : ScriptableObject
     public float PlayerJunpPower{get{return playerJunpPower;}private set{playerJunpPower = value;}}
 
     // ジャンプフラグ
+    [SerializeField]
     private bool junpFlag;
     public bool JunpFlag{get {return junpFlag;}set {junpFlag = value;}} 
 

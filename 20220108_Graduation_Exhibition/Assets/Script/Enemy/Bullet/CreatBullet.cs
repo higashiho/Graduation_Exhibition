@@ -24,7 +24,7 @@ public class CreatBullet
             BaseBullet clone = FactoryBullet.objectPool.Launch(tmpObj.transform.position, FactoryBullet.objectPool.BulletList, tmpBulet);
 
             // プレイヤーの座標
-            Vector3 targetPos = PlayerController.Player.transform.position;
+            Vector3 targetPos = InGameController.Player.transform.position;
 
             // 向きの生成（Z成分の除去と正規化）
             clone.ShotForward = Vector3.Scale((targetPos - tmpObj.transform.position), new Vector3(1, 1, 0)).normalized;

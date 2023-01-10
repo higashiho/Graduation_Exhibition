@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks; 
 
 public class TrumpUI
 {
@@ -14,11 +15,15 @@ public class TrumpUI
     public void Move(BaseUI tmpUI)
     {
         // プレイヤーがトランプを打ったら再生
-        if(!PlayerController.Player.ShotFlag && PlayFlag)
+        if(!InGameController.Player.ShotFlag)
         {
-            Debug.Log("play");
-            tmpUI.TrumpAbunator.Play();
-            PlayFlag = false;
+            sliderMove(tmpUI);
         }
+    }
+
+    // UI挙動
+    private void sliderMove(BaseUI tmpUI)
+    {
+        tmpUI.TrumpSlider.value -= Time.deltaTime;
     }
 }

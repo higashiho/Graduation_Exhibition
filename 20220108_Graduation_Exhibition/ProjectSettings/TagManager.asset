@@ -9,6 +9,7 @@ TagManager:
   - Vision
   - Bullet
   - Item
+  - UI
   layers:
   - Default
   - TransparentFX
